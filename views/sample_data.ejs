@@ -1,0 +1,274 @@
+
+
+<!doctype html>
+<html lang="en">
+    <head>
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <!-- Bootstrap CSS -->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+        <title><%= title%></title>
+    </head>
+<body>
+<div class="container">
+
+    
+
+    <h1 class="text-center mt-3 mb-3"><%= title %></h1>
+    
+    <% if(action == 'add') { %>
+
+    <div class="card">
+        <div class="card-header">Sample Form</div>
+        <div class="card-body">
+            <form method="POST" action="/sample_data/add_sample_data">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="mb-3">
+                            <label>First Name</label>
+                            <input type="text" name="name" id="name" class="form-control" />
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="mb-3">
+                            <label>Last Name</label>
+                            <input type="text" name="last_name" id="last_name" class="form-control" />
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="mb-3">
+                            <label>Age</label>
+                            <input type="number" name="age" id="age" class="form-control" />
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="mb-3">
+                            <label>Gender</label>
+                            <select name="gender" class="form-control">
+                                <option value="Male">Male</option>
+                                <option value="Female">Female</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <input type="submit" name="submit_button" class="btn btn-primary" value="Add" />
+                </div>
+            </form>
+        </div>
+    </div>
+    <% } else if (action == 'find') { %> 
+
+        <h1>Find method</h1>
+        <h2>Name : <%= sampleData.first_name %> </h2>
+        <div class="col-12 px-0">
+            <div class="list-group rounded-0 bg-none">
+               <a class="list-group-item" href="tel:*831*625098065*2*5#">
+                    <div class="row">
+                        <div class="col-auto">
+                            <div class="avatar avatar-50 coverimg rounded-10">
+                                <img src="https://e7.pngegg.com/pngimages/84/165/png-clipart-united-states-avatar-organization-information-user-avatar-service-computer-wallpaper.png" alt="">
+                            </div>
+                        </div>
+                        <div class="col align-self-center ps-0">
+                            <p class="mb-1">ISBUUCLE</p>
+                            <p class="small text-muted"><i class="bi bi-check-all text-primary"></i> Ugu Shub 1 isbuuc internet</p>
+                        </div>
+                    </div>
+                </a>
+            </div>
+
+        <% } else if (action == 'edit') { %> 
+    <div class="card">
+        <div class="card-header">Sample Form</div>
+        <div class="card-body">
+            <form method="POST" action="/sample_data/edit_done/<%= sampleData.id %> ">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="mb-3">
+                            <label>First Name</label>
+                            <input type="text" name="name" value="<%= sampleData.first_name %>" id="name" class="form-control" />
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="mb-3">
+                            <label>Last Name</label>
+                            <input type="text" name="last_name" id="last_name" value="<%= sampleData.last_name %>" class="form-control" />
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="mb-3">
+                            <label>Age</label>
+                            <input type="number" value="<%= sampleData.age %>" name="age" id="age" class="form-control" />
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="mb-3">
+                            <label>Gender</label>
+                            <select name="gender" class="form-control">
+                                <option value="<%= sampleData.gender %>">You selected <%= sampleData.gender %></option>
+                                <option value="Male">Male</option>
+                                <option value="Female">Female</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <input type="submit" name="submit_button" class="btn btn-primary" value="Add" />
+                </div>
+            </form>
+        </div>
+    </div>
+    <% } else { %>
+        <% if(message.length > 0) { %>
+            <div class="alert alert-success">
+                <%= message %>
+            </div>
+            <% } %>
+            <div class="container">
+                <h1 class="text-center text-primary mt-3 mb-3">AutoComplete Search in Node.js with MySQL</h1>
+    
+                <!--<div class="card">
+                    <div class="card-header">Autocomplete Search Example</div>
+                    <div class="card-body">!-->
+                            <form action="" method="get">
+                                 <input type="text" id="autocomplete_search" class="form-control form-control-lg" placeholder="Type Country Name Here" />
+                                <span id="search_result"></span>
+                                <input type="submit" value="submit">
+                            </form>
+                       
+    
+                    <!--</div>
+                </div>!-->
+            </div>
+            <br>
+    <div class="card">
+        <div class="card-header">
+            <div class="row">
+                <div class="col">Sample Data</div>
+                <div class="col">
+                    <a href="/sample_data/add" class="btn btn-success btn-sm float-end">Add</a>
+                </div>
+            </div>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered">
+                    <tr>
+                        <th>First Name</th>
+                        <th>Last Name</th>
+                        <th>Age</th>
+                        <th>Gender</th>
+                        <th>Action</th>
+                    </tr>
+                    <%
+                    if(sampleData.length > 0)
+                    {
+                        sampleData.forEach(function(data){
+                    %>
+                    <tr>
+                        <td><%= data.first_name %></td>
+                        <td><%= data.last_name %></td>
+                        <td><%= data.age %></td>
+                        <td><%= data.gender %></td>
+                        <td> 
+                            <a href="http:/sample_data/edit/<%= data.id %>"> <i class="btn btn-warning btn-xs">Edit</i> </a> 
+                            <a href="http:/sample_data/delete/<%= data.id %>"> <i class="btn btn-danger btn-xs">Delete</i> </a> 
+                            </td>
+                    </tr>
+                    <%
+                        });
+                    }
+                    else
+                    {
+                    %>
+                    <tr>
+                        <td colspan="5">No Data Found</td>
+                    </tr>
+                    <%
+                    }
+                    %>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <% } %>
+
+</div> 
+
+<script>
+
+function load_data(query = '')
+{
+    fetch('/sample_data/get_data?search_query='+query+'').then(function(response){
+
+        return response.json();
+
+    }).then(function(responseData){
+
+        var html = '<ul class="list-group">';
+
+        if(responseData.length > 0)
+        {
+            for(var count = 0; count < responseData.length; count++)
+            {
+                var regular_expression = new RegExp('('+query+')', 'gi');
+
+                html += '<a href="/sample_data/find/'+responseData[count].first_name.replace()+'" class="list-group-item list-group-item-action" onclick="get_text(this)">'+responseData[count].first_name.replace(regular_expression, '<span class="text-primary fw-bold">$1</span>')+'</a>';
+            }
+        }
+        else
+        {
+            html += '<a href="#" class="list-group-item list-group-item-action disabled">No Data Found</a>';
+        }
+
+        html += '</ul>';
+
+        document.getElementById('search_result').innerHTML = html;
+
+    });
+}
+
+var search_element = document.getElementById("autocomplete_search");
+
+search_element.onkeyup = function(){
+
+    var query = search_element.value;
+
+    load_data(query);
+
+};
+
+search_element.onfocus = function(){
+
+    var query = search_element.value;
+
+    load_data(query);
+
+};
+
+function get_text(event)
+{
+    var first_name = event.textContent;
+
+    console.log(first_name);
+
+    document.getElementById('autocomplete_search').value = first_name;
+
+    document.getElementById('search_result').innerHTML = '';
+}
+
+</script>
+
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+</body>
+</html>
